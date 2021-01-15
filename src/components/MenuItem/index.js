@@ -10,7 +10,8 @@ export default ({ icon, link }) => {
         <> 
         <LinkArea to={ link } active = { isActive }>
             <LinkIcon src={ icon } />
-        </LinkArea>
+
+                    </LinkArea>
         </>
     )
 }

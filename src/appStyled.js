@@ -18,6 +18,7 @@ export const Menu = styled.div`
 
 export const PageBody = styled.div`
  display:flex;
- background-color: #0000FF;
-  flex: 1;
+ background-color: #00980d;
+ background-image: url('/assets/bg.png');
+ flex: 1;
 ` 
