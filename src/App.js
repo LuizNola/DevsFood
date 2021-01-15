@@ -28,7 +28,6 @@ export default () => {
 
                     <Switch>
                         <Route exact path="/">
-                            <h1>Oi, {name}</h1>
                             <HomeScreen />
                         </Route>
                         <PriviteRouter exact path="/orders">
