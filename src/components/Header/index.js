@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {  Container, Logo, SearchInput } from './styled'
 
 
+
 export default ( {search, onSearch} ) => {
+    
 
     const [ inputActive, setInputActive ] = useState(search=='' ? false : true)
     const handleInputFocus = () => {
@@ -20,6 +22,7 @@ export default ( {search, onSearch} ) => {
         onSearch( e.target.value );
     
     }
+
     return (
         <Container>
             <Logo src="/assets/logo.png"/>

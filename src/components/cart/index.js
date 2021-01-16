@@ -3,14 +3,14 @@ import { CartArea,
          CartHeader,
          CartBody,
          CartIcon,
-         cartText } from './styled'
+         CartText } from './styled'
 
 export default () => {
     return (
         <CartArea>
             <CartHeader>
                 <CartIcon src ="/assets/cart.png" />
-                <cartText>Meu Carrinho</cartText>
+                <CartText>Meu Carrinho</CartText>
             </CartHeader>
             <CartBody>
 
