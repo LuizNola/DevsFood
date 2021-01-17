@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container, CategoryImg } from './styled'
 
-export default ({ data, activeCat, setActiveCat, title }) => {
+export default ({ data, activeCat, setActiveCat, title,  }) => {
 
     const handleCatClick = () =>{
         setActiveCat(data.id)
+      
     }
 
     return (

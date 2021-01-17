@@ -5,5 +5,11 @@ export default {
         let res = await fetch(BASE+'/categories');
         let json = await res.json();
         return json;
+    },
+    getProducts: async () =>{
+        // /products ([search, page, category])
+        let res = await fetch(BASE+'/products');
+        let json = await res.json();
+        return json;
     }
 };
