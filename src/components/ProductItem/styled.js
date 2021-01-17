@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const ItemArea = styled.div`
    
     display: flex;
+    justify-content:space-between;
+    align-items: center;
     box-sizing: border-box;
-    
-    width: 32%;
-
+   
     background-color:#fff;
 
-    margin-right: 1.3%;
     margin-bottom: 15px;
     padding: 8px;
     
@@ -18,8 +17,6 @@ export const ItemArea = styled.div`
 `
 
 export const LeftSide = styled.div`
-    
-    margin-right: 10px;
 
     img{
         
@@ -35,4 +32,11 @@ export const RightSide = styled.div`
         color: #00980d;
         margin: 0;
     }
+`
+
+export const NextImg = styled.img`
+     
+
+     width: 15px;
+     height: 15px;
 `

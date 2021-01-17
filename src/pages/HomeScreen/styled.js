@@ -15,10 +15,10 @@ export const CategoryList = styled.div`
 `; 
 
 export const ProductArea = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:10px;
 
     margin-top: 40px;
-    margin-right: -10px;
     
 `; 
