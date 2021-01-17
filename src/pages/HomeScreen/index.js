@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Container, CategoryArea, CategoryList } from './styled';
+import ReactToolTip from 'react-tooltip'
 
 import api from '../../api'
 
@@ -20,6 +21,8 @@ export default () => {
             if (cat.error == '') {
                 setCategories(cat.result)
             }
+
+            ReactToolTip.rebuild()
         }
         getCategories()
     }, [])
@@ -38,9 +41,9 @@ export default () => {
                     <CategoryArea>
                         Selecione uma categoria
                         <CategoryList>
-                            <CategoryItem setActiveCat={setActiveCat} activeCat={activeCat} data={{id:0,title:'Todas as categorias', image:'/assets/food-and-restaurant.png'}}/>
+                            <CategoryItem title="Todos" setActiveCat={setActiveCat} activeCat={activeCat} data={{id:0,title:'Todas as categorias', image:'/assets/food-and-restaurant.png'}}/>
                             {categories.map((item, index)=>(
-                                    <CategoryItem setActiveCat={setActiveCat} activeCat={activeCat} key={index} data={item}/>
+                                    <CategoryItem title={item.name}setActiveCat={setActiveCat} activeCat={activeCat} key={index} data={item}/>
                             ))}
                         </CategoryList>
                     </CategoryArea>

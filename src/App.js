@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import ReactToolTip from 'react-tooltip'
 
 import { Container, Menu, PageBody } from './appStyled'
 
@@ -18,9 +19,9 @@ export default () => {
         <BrowserRouter>
             <Container>
                 <Menu>
-                    <MenuItem icon="/assets/store.png" link="/"/>
-                    <MenuItem icon="/assets/order.png" link="/orders"/>
-                    <MenuItem icon="/assets/profile.png" link="/profile"/>
+                    <MenuItem title="Loja" icon="/assets/store.png" link="/"/>
+                    <MenuItem title="Pedidos" icon="/assets/order.png" link="/orders"/>
+                    <MenuItem title="Perfil" icon="/assets/profile.png" link="/profile"/>
                 </Menu>
 
                 <PageBody>
@@ -43,6 +44,8 @@ export default () => {
 
                 </PageBody>
                 <Cart/>
+                <ReactToolTip id="tip-top" place="top" effect="solid"/>
+                <ReactToolTip id="tip-right" place="right" effect="solid"/>
             </Container>
         </BrowserRouter>
     );

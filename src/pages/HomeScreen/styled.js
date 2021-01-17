@@ -8,7 +8,6 @@ export const Container = styled.div`
 export const CategoryArea = styled.div`
     color: #fff;
     margin-top: 20px;
-
 `; 
 export const CategoryList = styled.div`
     display: flex;
