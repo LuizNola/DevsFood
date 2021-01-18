@@ -15,6 +15,8 @@ import CategoryItem from '../../components/CategoryItem'
 import Header from '../../components/Header'
 import ProductItem from '../../components/ProductItem'
 
+let searchTimer = null;
+
 export default () => {
 
 
@@ -24,11 +26,12 @@ export default () => {
     const [ totalPages, setTotalPages ] = useState(0)
 
     const [ activeCat, setActiveCat ] = useState(0)
-    const [ activePage, setActivePage ] = useState(0)
+    const [ activePage, setActivePage ] = useState(1)
+    const [ activeSearch, setActiveSearch ] = useState('')
    
 
     const getProducts = async () =>{
-        const prods = await api.getProducts()
+        const prods = await api.getProducts(activeCat, activePage, activeSearch)
         if(prods.error == ''){
             setProducts(prods.result.data)
             setTotalPages(prods.result.pages)
@@ -37,10 +40,15 @@ export default () => {
     }
 
     useEffect(() => {
-        const getCategories = async () => {
+        clearTimeout(searchTimer)
+        searchTimer = setTimeout(()=>{
+            setActiveSearch(headerSearch);
+        }, 2000)
+    }, [ headerSearch ])
 
-            
-            const cat = await api.getCategories()
+    useEffect(() => {
+        const getCategories = async () => {
+            const cat = await api.getCategories();
             if (cat.error == '') {
                 setCategories(cat.result)
                 console.log(cat)
@@ -56,7 +64,7 @@ export default () => {
         setProducts([])
         getProducts();
 
-    },[activeCat, activePage])
+    },[activeCat, activePage, activeSearch ])
 
  
 
