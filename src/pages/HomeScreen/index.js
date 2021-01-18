@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import { Container, CategoryArea, CategoryList, ProductArea } from './styled';
+import { Container, 
+        CategoryArea, 
+        CategoryList, 
+        ProductArea, 
+        ProductPaginationArea, 
+        ProductPaginationItem 
+        } from './styled';
 import ReactToolTip from 'react-tooltip'
 
 import api from '../../api'
@@ -15,15 +21,18 @@ export default () => {
     const [ headerSearch, setHeaderSearch ] = useState('')
     const [ categories, setCategories ] = useState([])
     const [ products, setProducts ] = useState([])
+    const [ totalPages, setTotalPages ] = useState(0)
 
     const [ activeCat, setActiveCat ] = useState(0)
+    const [ activePage, setActivePage ] = useState(0)
    
 
     const getProducts = async () =>{
         const prods = await api.getProducts()
         if(prods.error == ''){
             setProducts(prods.result.data)
-           
+            setTotalPages(prods.result.pages)
+            setActivePage(prods.result.page)
         }
     }
 
@@ -44,10 +53,10 @@ export default () => {
     }, [])
 
     useEffect(() =>{
+        setProducts([])
         getProducts();
 
-
-    },[activeCat])
+    },[activeCat, activePage])
 
  
 
@@ -72,11 +81,26 @@ export default () => {
                 <>
                     <ProductArea>
                             {products.map((item,index)=>(
-                                <ProductItem key = {index} name={item.name}  image={item.image} ingredients={item.ingredients} price={item.price}/>
+                                <ProductItem key={ index } name={ item.name }  image={ item.image } ingredients={item.ingredients} price={item.price}/>
                             ))}
                         
                     </ProductArea>
                 </>
+            }
+
+            {totalPages > 0 && 
+                <ProductPaginationArea>
+                    {Array(totalPages).fill(0).map((item, index)=>(
+                        <ProductPaginationItem 
+                            current={index+1} 
+                            active={ activePage } 
+                            key={ index }
+                            onClick={()=>{setActivePage(index+1)}}
+                            >
+                            { index + 1 }
+                        </ProductPaginationItem>
+                    ))}
+                </ProductPaginationArea>
             }
         </Container>
     );

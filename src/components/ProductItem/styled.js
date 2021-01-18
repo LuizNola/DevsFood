@@ -13,6 +13,7 @@ export const ItemArea = styled.div`
     padding: 8px;
     
     border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16);
     cursor: pointer;
 `
 
