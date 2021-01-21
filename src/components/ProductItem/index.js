@@ -1,18 +1,21 @@
 import React from 'react';
 import { ItemArea, LeftSide, RightSide, NextImg } from './styled'
 
-export default ({ name, image, ingredients, price }) => {
+export default ({ data,onClick }) => {
+    const handleClick = () => {
+        onClick(data)
+    }
     return (
         <>
-         <ItemArea>
+         <ItemArea onClick ={handleClick}>
             <LeftSide>
-                <img src={image}/>
+                <img src={data.image}/>
             </LeftSide>
 
             <RightSide>
-                <h2>{name}</h2>
-                <span>{price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
-                <p>{ingredients}</p>
+                <h2>{data.name}</h2>
+                <span>{data.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                <p>{data.ingredients}</p>
             </RightSide>
             <NextImg src="/assets/next.png"/>
          </ItemArea>

@@ -16,10 +16,8 @@ export const  Container = styled.div`
 `
 
 export const ModalBody = styled.div`
-    width: 300px;
-    height: 300px;
     max-height: 90vh;
-    max-width: 98vh;
+    max-width: 98vw;
 
     overflow: scroll;
 

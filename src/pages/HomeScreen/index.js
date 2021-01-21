@@ -15,6 +15,7 @@ import CategoryItem from '../../components/CategoryItem'
 import Header from '../../components/Header'
 import ProductItem from '../../components/ProductItem'
 import Modal from '../../components/Modal'
+import ModalProduct from '../../components/ModalProduct'
 
 let searchTimer = null;
 
@@ -25,8 +26,9 @@ export default () => {
     const [ categories, setCategories ] = useState([])
     const [ products, setProducts ] = useState([])
     const [ totalPages, setTotalPages ] = useState(0)
+    const [ modalData, setModalData ] = useState({})
 
-    const [ modalStatus, setModalStatus ] = useState(true)
+    const [ modalStatus, setModalStatus ] = useState(false)
 
     const [ activeCat, setActiveCat ] = useState(0)
     const [ activePage, setActivePage ] = useState(1)
@@ -41,6 +43,12 @@ export default () => {
             setActivePage(prods.result.page)
         }
     }
+
+    const handleProductClick = (data) => {
+        setModalData(data);
+        setModalStatus(true);
+    }
+ 
 
     useEffect(() => {
         clearTimeout(searchTimer)
@@ -64,7 +72,7 @@ export default () => {
     }, [])
 
     useEffect(() =>{
-        setProducts([])
+        setProducts([]);
         getProducts();
 
     },[activeCat, activePage, activeSearch ])
@@ -92,7 +100,9 @@ export default () => {
                 <>
                     <ProductArea>
                             {products.map((item,index)=>(
-                                <ProductItem key={ index } name={ item.name }  image={ item.image } ingredients={item.ingredients} price={item.price}/>
+                                <ProductItem key={ index } 
+                                             onClick={handleProductClick}
+                                             data={item}/>
                             ))}
                         
                     </ProductArea>
@@ -115,7 +125,7 @@ export default () => {
             }
 
             <Modal status={ modalStatus } setStatus={setModalStatus}>
-                Conteudo do modal
+                <ModalProduct data={modalData}/>
             </Modal>
         </Container>
     );
