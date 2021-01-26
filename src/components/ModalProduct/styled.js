@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 740px;
+
     padding: 20px;
 
 `;
@@ -78,6 +78,7 @@ export const ProductQtImg = styled.img`
     height: auto;
 
     margin: 0 10px;
+    cursor: pointer;
 `
 export const ProductQtText = styled.div`
     font-weight:bold;
