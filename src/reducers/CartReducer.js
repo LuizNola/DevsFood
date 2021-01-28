@@ -6,9 +6,10 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    let products = [...state.products];
+
     switch(action.type) {
         case 'ADD_PRODUCT':
-            let products = [...state.products];
             let id = action.payload.data.id;
 
             let index = products.findIndex(item => item.id === id);
@@ -23,6 +24,28 @@ export default (state = initialState, action) => {
 
             return {...state, products}
         break;  
+
+        case 'CHANGE_PRODUCT' : 
+             
+                
+                switch (action.payload.type) {
+                    case '-':
+                        if(products[action.payload.key]){
+                            products[action.payload.key].qt--;
+                            if(products[action.payload.key].qt <= 0){
+                                products = products.filter((item, index)=> index != action.payload.key)
+                            }
+                        }
+                    break;
+                    case '+':
+                        if(products[action.payload.key]){
+                            products[action.payload.key].qt++
+                        }
+                    break;
+                }
+
+             return {...state, products}
+        break;
     }
 
     return state;
